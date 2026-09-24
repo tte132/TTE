@@ -1,0 +1,6 @@
+{
+  "name": "TTE - Virtual Mining & Rewards",
+  "description": "Telegram Mini App user panel for TTE virtual mining, task rewards, miner upgrades, and squad commissions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

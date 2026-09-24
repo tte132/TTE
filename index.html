@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>TTE - Time To Earn</title>
     <meta name="description" content="TTE (Time To Earn) Telegram Mini App - Virtual mining, task rewards, miner upgrades, and squad commissions." />
+
+    <!-- Trailing slash fixer for GitHub Pages subpaths (prevents 404 on relative assets) -->
+    <script>
+      (function() {
+        var p = window.location.pathname;
+        if (p && !p.endsWith('/') && !p.split('/').pop().includes('.')) {
+          window.location.replace(window.location.protocol + '//' + window.location.host + p + '/' + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
+
+    <!-- Single Page Apps for GitHub Pages decoder -->
+    <script>
+      (function(l) {
+        if (l.search && l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      })(window.location);
+    </script>
+
     <link rel="icon" type="image/jpeg" href="./tte_logo.jpg" />
     <meta property="og:title" content="TTE - Time To Earn" />
     <meta property="og:description" content="TTE (Time To Earn) Telegram Mini App - Virtual mining, task rewards, miner upgrades, and squad commissions." />

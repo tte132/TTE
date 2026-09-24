@@ -87,7 +87,7 @@ const DEFAULT_SYSTEM_SETTINGS: SystemSettings = {
   appName: 'TIME TO EARN',
   coinName: 'Time To Earn',
   symbol: 'TTE',
-  logoUrl: '/tte_logo.jpg',
+  logoUrl: './tte_logo.jpg',
   supportUrl: 'https://t.me/TTESupportBot',
   telegramUrl: 'https://t.me/TTECommunity',
   websiteUrl: 'https://timetoearn.io',

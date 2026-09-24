@@ -4,8 +4,14 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  // If running in GitHub Actions, automatically detect repo subpath (e.g. /TTE/)
+  // In dev / AI Studio preview, fallback to './'
+  const isCI = process.env.GITHUB_ACTIONS === 'true';
+  const repoName = process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : '';
+  const base = isCI && repoName ? `/${repoName}/` : './';
+
   return {
-    base: './',
+    base,
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

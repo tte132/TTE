@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>TTE - Time To Earn</title>
+    <meta name="description" content="TTE (Time To Earn) Telegram Mini App - Virtual mining, task rewards, miner upgrades, and squad commissions." />
+
+    <!-- Trailing slash fixer for GitHub Pages subpaths (prevents 404 on relative assets) -->
+    <script>
+      (function() {
+        var p = window.location.pathname;
+        if (p && !p.endsWith('/') && !p.split('/').pop().includes('.')) {
+          window.location.replace(window.location.protocol + '//' + window.location.host + p + '/' + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
+
+    <!-- Single Page Apps for GitHub Pages decoder -->
+    <script>
+      (function(l) {
+        if (l.search && l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      })(window.location);
+    </script>
+
+    <link rel="icon" type="image/jpeg" href="./tte_logo.jpg" />
+    <meta property="og:title" content="TTE - Time To Earn" />
+    <meta property="og:description" content="TTE (Time To Earn) Telegram Mini App - Virtual mining, task rewards, miner upgrades, and squad commissions." />
+    <meta property="og:image" content="./tte_logo.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script type="module" crossorigin src="/TTE/assets/index-zR6IKtAw.js"></script>
+    <link rel="stylesheet" crossorigin href="/TTE/assets/index-VkrPeDCp.css">
+  </head>
+  <body class="bg-[#050811] text-slate-100 font-sans antialiased selection:bg-[#39ff14]/30 selection:text-[#39ff14] overflow-x-hidden min-h-screen">
+    <div id="root"></div>
+  </body>
+</html>
+

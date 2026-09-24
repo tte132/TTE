@@ -71,22 +71,27 @@ const MainContent: React.FC<{ currentAdmin: AdminUser | null; onOpenAdmin: () =>
   );
 };
 
+const checkIsAdmin = () => {
+  if (typeof window === 'undefined') return false;
+  const hash = window.location.hash || '';
+  const search = window.location.search || '';
+  return (
+    hash === '#admin' ||
+    hash.startsWith('#admin?') ||
+    hash.startsWith('#/admin') ||
+    search.includes('panel=admin') ||
+    search.includes('admin=true')
+  );
+};
+
 export default function App() {
-  const [isAdminRoute, setIsAdminRoute] = useState<boolean>(() => {
-    return (
-      window.location.hash.includes('admin') ||
-      window.location.search.includes('admin')
-    );
-  });
+  const [isAdminRoute, setIsAdminRoute] = useState<boolean>(() => checkIsAdmin());
   const [currentAdmin, setCurrentAdmin] = useState<AdminUser | null>(adminService.getCurrentAdmin());
   const [systemSettings, setSystemSettings] = useState(adminService.getSystemSettings());
 
   useEffect(() => {
     const handleHashChange = () => {
-      const isHashAdmin =
-        window.location.hash.includes('admin') ||
-        window.location.search.includes('admin');
-      setIsAdminRoute(isHashAdmin);
+      setIsAdminRoute(checkIsAdmin());
       setCurrentAdmin(adminService.getCurrentAdmin());
       setSystemSettings(adminService.getSystemSettings());
     };

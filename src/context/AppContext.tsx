@@ -92,12 +92,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   
   const [currentTab, setCurrentTab] = useState<NavigationTab>('mine');
   const [isMiningActive, setIsMiningActive] = useState<boolean>(() => {
-    return localStorage.getItem('tte_mining_active_v3') === 'true';
+    try {
+      return typeof window !== 'undefined' && localStorage.getItem('tte_mining_active_v3') === 'true';
+    } catch {
+      return false;
+    }
   });
 
   const [unclaimedReward, setUnclaimedReward] = useState<number>(() => {
-    const saved = localStorage.getItem('tte_unclaimed_reward_v3');
-    return saved ? Math.max(0, parseFloat(saved)) : 0.0000;
+    try {
+      const saved = typeof window !== 'undefined' ? localStorage.getItem('tte_unclaimed_reward_v3') : null;
+      return saved ? Math.max(0, parseFloat(saved) || 0) : 0.0000;
+    } catch {
+      return 0.0000;
+    }
   });
   
   const [isClaimingReward, setIsClaimingReward] = useState(false);
@@ -237,12 +245,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       
       setUnclaimedReward((prev) => {
         const nextVal = prev + ratePerSec;
-        localStorage.setItem('tte_unclaimed_reward_v3', nextVal.toString());
+        try {
+          localStorage.setItem('tte_unclaimed_reward_v3', nextVal.toString());
+        } catch {}
         return nextVal;
       });
 
       // Save live heartbeat timestamp for offline calculation
-      localStorage.setItem('tte_last_active_time_v3', Date.now().toString());
+      try {
+        localStorage.setItem('tte_last_active_time_v3', Date.now().toString());
+      } catch {}
     }, 1000);
 
     return () => clearInterval(interval);

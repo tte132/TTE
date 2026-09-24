@@ -257,6 +257,27 @@ export const apiService = {
     }
 
     const user = getStored<User>(STORAGE_KEYS.USER, INITIAL_USER);
+
+    // If running inside Telegram Mini App, automatically sync the real Telegram user
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp?.initDataUnsafe?.user) {
+      try {
+        const tgUser = window.Telegram.WebApp.initDataUnsafe.user;
+        if (tgUser.id) {
+          user.telegramId = String(tgUser.id);
+          if (tgUser.username) {
+            user.username = tgUser.username;
+          }
+          const fullName = `${tgUser.first_name || ''} ${tgUser.last_name || ''}`.trim();
+          if (fullName) {
+            user.displayName = fullName;
+          }
+          setStored(STORAGE_KEYS.USER, user);
+        }
+      } catch (e) {
+        console.warn('Telegram user sync notice:', e);
+      }
+    }
+
     // Ensure balance starts strictly at 0.00 real time if legacy mock detected
     if (user.balance === 132.5 || user.balance === 142.8 || user.balance == null) {
       user.balance = 0.0;
